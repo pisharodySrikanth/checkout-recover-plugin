@@ -49,7 +49,7 @@ export class CartsController {
     return this.service.getTriggerables(currentSchedule);
   }
 
-  @Post('/placed')
+  @Post('/completed')
   markCartAsDone(@Body() payload: CartDone) {
     return this.service.markCartAsDone(payload.cart_token);
   }

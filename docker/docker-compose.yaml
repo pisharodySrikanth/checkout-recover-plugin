@@ -7,7 +7,7 @@ services:
         source: ../
         target: /code
     working_dir: /code
-    command: sh -c "yarn start:dev"
+    command: sh -c "yarn && yarn start:dev"
     ports:
       - "3000:3000"
   db:
