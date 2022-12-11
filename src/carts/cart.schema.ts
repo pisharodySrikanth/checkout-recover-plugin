@@ -4,6 +4,20 @@ import { HydratedDocument } from 'mongoose';
 export type CartDocument = HydratedDocument<Cart>;
 
 @Schema()
+class User {
+  @Prop()
+  firstName: string;
+
+  @Prop()
+  lastName: string;
+
+  @Prop()
+  email: string;
+}
+
+const UserSchema = SchemaFactory.createForClass(User);
+
+@Schema()
 export class Cart {
   @Prop()
   token: string;
@@ -11,8 +25,8 @@ export class Cart {
   @Prop()
   url: string;
 
-  @Prop()
-  userEmail: string;
+  @Prop({ type: UserSchema })
+  user: User;
 
   @Prop()
   createdAt: Date;

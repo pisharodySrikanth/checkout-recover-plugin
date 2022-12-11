@@ -7,5 +7,7 @@ export class CreateCart {
 
   customer: {
     email: string;
+    first_name: string;
+    last_name: string;
   };
 }
