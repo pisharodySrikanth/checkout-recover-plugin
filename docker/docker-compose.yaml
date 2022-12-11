@@ -13,6 +13,3 @@ services:
   db:
     image: mongo:latest
     restart: always
-    environment:
-      MONGO_INITDB_ROOT_PASSWORD: user
-      MONGO_INITDB_ROOT_USERNAME: password

@@ -6,13 +6,19 @@ export type CartDocument = HydratedDocument<Cart>;
 @Schema()
 export class Cart {
   @Prop()
-  name: string;
+  token: string;
 
   @Prop()
-  age: number;
+  url: string;
 
   @Prop()
-  breed: string;
+  userEmail: string;
+
+  @Prop()
+  createdAt: Date;
+
+  @Prop()
+  orderPlaced: boolean;
 }
 
 export const CartSchema = SchemaFactory.createForClass(Cart);

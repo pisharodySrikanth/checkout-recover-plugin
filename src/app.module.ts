@@ -4,7 +4,7 @@ import { RecoveryModule } from './recovery/recovery.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://user:password@db:27017/recovery'),
+    MongooseModule.forRoot('mongodb://db:27017/recovery'),
     RecoveryModule,
   ],
 })
