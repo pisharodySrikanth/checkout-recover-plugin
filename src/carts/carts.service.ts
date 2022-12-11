@@ -1,10 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { getSubtractedDate, getOneMinuteRange } from 'src/utilities/date';
 import { Cart, CartDocument } from './cart.schema';
-import { getSubtractedDate, getOneMinuteRange } from '../utilities/date';
-
-const hardcodedDate = '2022-12-11T06:31:25.035Z';
 
 @Injectable()
 export class CartsService {
@@ -18,10 +16,10 @@ export class CartsService {
     return this.cartModel.insertMany([cartDto]);
   }
 
-  async createFakeCarts(cartDto) {
+  async createFakeCarts(cartDto, schedule) {
     const inserts = [];
-    const now = new Date(hardcodedDate);
-    const len = 65;
+    const now = new Date();
+    const len = schedule[schedule.length - 1];
 
     for (let i = 0; i < len; i++) {
       inserts.push({
@@ -47,7 +45,7 @@ export class CartsService {
   }
 
   async getTriggerables(schedules: number[]) {
-    const now = new Date(hardcodedDate);
+    const now = new Date();
     const conditions = schedules.map((schedule) => {
       const { lt: $lt, gte: $gte } = getOneMinuteRange(
         getSubtractedDate(now, schedule),

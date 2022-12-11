@@ -25,6 +25,24 @@ export class CartsController {
     });
   }
 
+  @Post('/fake')
+  async createFakeCarts(@Body() payload: CreateCart) {
+    const currentSchedule = await this.scheduleService.getCurrentSchedule();
+    return this.service.createFakeCarts(
+      {
+        token: payload.cart_token,
+        url: payload.abandoned_checkout_url,
+        user: {
+          firstName: payload.customer.first_name,
+          lastName: payload.customer.last_name,
+          email: payload.customer.email,
+        },
+        createdAt: payload.created_at,
+      },
+      currentSchedule,
+    );
+  }
+
   @Get('/triggerables')
   async getCartsToTrigger() {
     const currentSchedule = await this.scheduleService.getCurrentSchedule();
